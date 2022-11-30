@@ -7,7 +7,6 @@ from sklearn import metrics
 
 """
 baselineNB: function for Naive Bayes Baseline
-
 :param x_train: training data
 :param y_train: training labels
 :param x_test: testing data
@@ -16,8 +15,6 @@ baselineNB: function for Naive Bayes Baseline
              0: Bernoulli
              1: Gaussian
              2: Multinomial
-
-
 """
 
 
@@ -72,8 +69,8 @@ def baselineDT(x_train, y_train, x_test, y_test):
     # Predict the response for test dataset
     y_pred = clf.predict(x_test)
 
-    # Report Test Accuracy, Classification Report, and Confusion Matrix
-    train_acc = metrics.accuracy_score(y_test, y_pred)
+    # Model Accuracy, how often is the classifier correct?
+    train_acc = metrics.accuracy_score(y_test, y_pred) * 100
     print("Accuracy:", format(train_acc, ".3f"))
 
     print("\nClassification Report")
