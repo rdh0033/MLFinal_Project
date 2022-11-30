@@ -61,7 +61,7 @@ def baselineNB(x_train, y_train, x_test, y_test, dist):
 
     return ()
 
-def baselineNB(x_train, y_train, x_test, y_test):
+def baselineDT(x_train, y_train, x_test, y_test):
 
     # Create Decision Tree classifer object
     clf = DecisionTreeClassifier(criterion='entropy', max_depth=7)
@@ -72,8 +72,20 @@ def baselineNB(x_train, y_train, x_test, y_test):
     # Predict the response for test dataset
     y_pred = clf.predict(x_test)
 
-    # Model Accuracy, how often is the classifier correct?
+    # Report Test Accuracy, Classification Report, and Confusion Matrix
     train_acc = metrics.accuracy_score(y_test, y_pred)
     print("Accuracy:", format(train_acc, ".3f"))
 
+    print("\nClassification Report")
+    report = metrics.classification_report(y_test, y_pred)
+    print(report)
+
+    cm = confusion_matrix(y_pred, y_test)
+    ConfusionMatrixDisplay(cm).plot()
+    plt.title("Confusion Matrix")
+    plt.savefig("Matrix/Confusion_matrix_DT")
+
+    print("Confusion Matrix saved")
+
     return()
+  
